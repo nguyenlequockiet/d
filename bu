@@ -1,0 +1,33 @@
+class VigenereCipher:
+    def __init__(self):
+        pass
+
+    def encrypt_text(self, text, key):
+        res = []
+        key = key.upper()
+        text = text.upper()
+        key_index = 0
+        for char in text:
+            if char.isalpha():
+                shift = ord(key[key_index % len(key)]) - ord('A')
+                encrypted_char = chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
+                res.append(encrypted_char)
+                key_index += 1
+            else:
+                res.append(char)
+        return "".join(res)
+
+    def decrypt_text(self, text, key):
+        res = []
+        key = key.upper()
+        text = text.upper()
+        key_index = 0
+        for char in text:
+            if char.isalpha():
+                shift = ord(key[key_index % len(key)]) - ord('A')
+                decrypted_char = chr((ord(char) - ord('A') - shift) % 26 + ord('A'))
+                res.append(decrypted_char)
+                key_index += 1
+            else:
+                res.append(char)
+        return "".join(res)
